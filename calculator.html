@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Calculator</title>
+    <style>
+       
+       body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Calculator container */
+        .calculator {
+            background: #ffffff;
+            width: 400px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Header styling */
+        h2 {
+            color: #333333;
+            margin-bottom: 20px;
+            padding: 10px;
+            position: relative;
+            bottom: 30%;
+            left: 22%;
+        }
+
+        /* Input fields */
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* Button container */
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        /* Button styling */
+        button {
+            flex: 1;
+            min-width: 80px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* Clear button */
+        .clear-btn {
+            background: #ff4d4d;
+        }
+
+        .clear-btn:hover {
+            background: #cc0000;
+        }
+
+        /* Result display */
+        #result {
+            font-size: 22px;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h2>Simple Calculator</h2>
+    <div>
+        <input type="text" id="num1" placeholder="Enter first number" />
+        <br><br>
+        <input type="text" id="num2" placeholder="Enter second number" />
+        <br><br>
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('*')">×</button>
+        <button onclick="calculate('/')">÷</button>
+        <button onclick="clearCalculator()">Clear</button>
+        <br><br>
+        <h3>Result: <span id="result">0</span></h3>
+    </div>
+
+    <script>
+        function calculate(operator) {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            let result = 0;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                alert("Please enter valid numbers!");
+                return;
+            }
+
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 === 0) {
+                        alert("Cannot divide by zero!");
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = 0;
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+
+        function clearCalculator() {
+            
+            document.getElementById('num1').value = '';
+            document.getElementById('num2').value = '';
+            document.getElementById('result').innerText = '0';
+        }
+    </script>
+</body>
+</html>
